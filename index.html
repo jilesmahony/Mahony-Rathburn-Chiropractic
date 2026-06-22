@@ -1,472 +1,854 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahony-Rathburn Chiropractic</title>
-    <style>
-        /* Design Variables & Warm Palette */
-        :root {
-            --primary: #1e3a8a;       /* Deep clinical blue */
-            --secondary: #0d9488;     /* Energetic teal */
-            --accent: #f59e0b;        /* Warm gold for highlights/stars */
-            --text-dark: #2c3e50;     /* Soft dark slate for readability */
-            --bg-light: #fdfefe;      /* Clean, off-white background */
-            --bg-warm: #f7fafc;       /* Gentle section transition grey */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mahony Rathburn Chiropractic | Fort Wayne, Indiana</title>
+  <meta name="description" content="Mahony Rathburn Chiropractic in Fort Wayne, Indiana. Dr. Orion Mahony provides hands-on chiropractic care for musculoskeletal issues, back and neck pain, TMJ, sports injuries, and wellness. Book online today." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+    :root {
+      --forest:    #2D4A35;
+      --sage:      #5C7E65;
+      --mist:      #E8EFE9;
+      --bark:      #5C4A2A;
+      --cream:     #F7F4EF;
+      --warm-white:#FDFCFA;
+      --charcoal:  #2A2A2A;
+      --mid:       #666;
+      --light:     #999;
+      --rule:      rgba(0,0,0,0.10);
+      --radius:    8px;
+      --radius-lg: 16px;
+      --hero-height: 100vh;
+    }
 
-        body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            background-color: var(--bg-light);
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Navigation Header */
-        header {
-            background: #ffffff;
-            padding: 1.25rem 2rem;
-            position: sticky;
-            top: 0;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--warm-white);
+      color: var(--charcoal);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
 
-        .logo {
-            font-weight: 700;
-            font-size: 1.35rem;
-            color: var(--primary);
-            letter-spacing: -0.5px;
-        }
+    /* ─── NAV ─── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      background: rgba(253,252,250,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--rule);
+      transition: box-shadow 0.2s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--forest);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark svg { width: 18px; height: 18px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+    .nav-logo-text {
+      font-family: 'Lora', serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--forest);
+      line-height: 1.2;
+    }
+    .nav-logo-sub { font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 400; color: var(--mid); letter-spacing: 0.04em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--mid);
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--forest); }
+    .nav-book {
+      background: var(--forest);
+      color: #fff !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-size: 13px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.02em;
+      transition: background 0.15s !important;
+    }
+    .nav-book:hover { background: var(--sage) !important; color: #fff !important; }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 6px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--charcoal); margin: 4px 0; border-radius: 2px; transition: 0.3s; }
+    .mobile-menu { display: none; }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
+    /* ─── HERO ─── */
+    .hero {
+      height: var(--hero-height);
+      min-height: 560px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--forest);
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background-image: url('images/hero.jpg');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.35;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 680px;
+      padding: 0 3rem;
+      margin-left: 6vw;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 600;
+      line-height: 1.18;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
+    .hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.78);
+      margin-bottom: 2rem;
+      max-width: 480px;
+      font-weight: 300;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: #fff;
+      color: var(--forest);
+      font-weight: 600;
+      font-size: 14px;
+      padding: 13px 26px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--mist); transform: translateY(-1px); }
+    .btn-ghost {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      color: #fff;
+      font-weight: 500;
+      font-size: 14px;
+      padding: 12px 26px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,0.25);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3;transform:scaleY(1)} 50%{opacity:0.8;transform:scaleY(1.2)} }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.2s ease;
-        }
+    /* ─── STRIP BAND ─── */
+    .strip {
+      background: var(--forest);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.85);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .strip-item svg { width: 16px; height: 16px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; flex-shrink: 0; }
 
-        nav a:hover {
-            color: var(--secondary);
-        }
+    /* ─── SECTIONS ─── */
+    .section { padding: 5.5rem 2rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--charcoal);
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--mid);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      line-height: 1.7;
+    }
 
-        /* Hero Section (Taller & Lower Opacity Overlay) */
-        .hero {
-            background: linear-gradient(rgba(30, 58, 138, 0.55), rgba(30, 58, 138, 0.55)), url('images/hero-bg.jpg') no-repeat center center/cover;
-            color: #ffffff;
-            min-height: 75vh; /* Increased height */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 4rem 2rem;
-        }
+    /* ─── ABOUT ─── */
+    .about { background: var(--cream); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: var(--forest);
+      color: #fff;
+      padding: 0.75rem 1.1rem;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .about-img-accent strong { display: block; font-size: 20px; font-weight: 600; font-family: 'Lora', serif; }
+    .about-body p { color: var(--mid); margin-bottom: 1.1rem; font-size: 1.02rem; }
+    .about-body p:last-of-type { margin-bottom: 1.75rem; }
 
-        .hero h1 {
-            font-size: 3.25rem;
-            margin-bottom: 1.25rem;
-            font-weight: 800;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-            max-width: 900px;
-        }
+    /* ─── SERVICES ─── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      border: 1px solid var(--rule);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .service-card:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--mist);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .service-icon svg { width: 22px; height: 22px; stroke: var(--forest); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .service-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 0.5rem;
+    }
+    .service-card p { font-size: 0.92rem; color: var(--mid); line-height: 1.65; }
 
-        .hero p {
-            font-size: 1.35rem;
-            max-width: 650px;
-            margin: 0 auto 2.5rem auto;
-            opacity: 0.95;
-            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
-        }
+    /* ─── DOCTORS ─── */
+    .doctors { background: var(--cream); }
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+    .doctor-card {
+      background: var(--warm-white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--rule);
+    }
+    .doctor-photo {
+      aspect-ratio: 3/2;
+      overflow: hidden;
+    }
+    .doctor-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .doctor-photo-placeholder {
+      width: 100%;
+      height: 100%;
+      background: var(--mist);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .doctor-photo-placeholder svg { width: 64px; height: 64px; stroke: var(--sage); fill: none; stroke-width: 1.5; }
+    .doctor-info { padding: 1.5rem; }
+    .doctor-info h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--forest);
+      margin-bottom: 0.2rem;
+    }
+    .doctor-credentials {
+      font-size: 12px;
+      color: var(--sage);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .doctor-info p { font-size: 0.93rem; color: var(--mid); line-height: 1.65; }
 
-        /* Premium Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--secondary);
-            color: white;
-            padding: 0.85rem 1.75rem;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
-            transition: all 0.2s ease;
-        }
+    /* ─── TESTIMONIALS ─── */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial {
+      background: var(--cream);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      border-left: 3px solid var(--sage);
+    }
+    .testimonial-text {
+      font-family: 'Lora', serif;
+      font-size: 0.98rem;
+      font-style: italic;
+      color: var(--charcoal);
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .testimonial-author { font-size: 13px; font-weight: 600; color: var(--forest); }
+    .stars { color: #c4853a; font-size: 13px; margin-bottom: 0.6rem; letter-spacing: 2px; }
 
-        .btn:hover {
-            background-color: #0f766e;
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
-        }
+    /* ─── CONTACT / LOCATION ─── */
+    .contact { background: var(--cream); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+      align-items: flex-start;
+    }
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--mist);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { width: 18px; height: 18px; stroke: var(--forest); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .contact-item-text a { color: var(--forest); text-decoration: none; font-weight: 500; }
+    .contact-item-text a:hover { text-decoration: underline; }
+    .contact-item-text p { color: var(--mid); font-size: 0.95rem; margin: 0; line-height: 1.55; }
+    .contact-item-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 2px; }
+    .map-placeholder {
+      background: var(--mist);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      border: 1px solid var(--rule);
+    }
+    .map-placeholder iframe { width: 100%; height: 100%; border: none; display: block; }
 
-        .btn-alt {
-            background-color: #3b5998; /* Facebook Corporate Blue */
-            box-shadow: 0 4px 12px rgba(59, 89, 152, 0.2);
-        }
+    /* ─── BOOKING CTA ─── */
+    .booking-cta {
+      background: var(--forest);
+      padding: 5rem 2rem;
+      text-align: center;
+    }
+    .booking-cta h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+    .booking-cta p { color: rgba(255,255,255,0.72); font-size: 1.05rem; margin-bottom: 2rem; }
+    .btn-cta {
+      display: inline-block;
+      background: #fff;
+      color: var(--forest);
+      font-weight: 700;
+      font-size: 15px;
+      padding: 15px 36px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-cta:hover { background: var(--mist); transform: translateY(-1px); }
 
-        .btn-alt:hover {
-            background-color: #2d4373;
-            box-shadow: 0 6px 16px rgba(59, 89, 152, 0.3);
-        }
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1c2e20;
+      color: rgba(255,255,255,0.55);
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      text-align: center;
+      font-size: 13px;
+    }
+    footer a { color: rgba(255,255,255,0.7); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center; }
 
-        .btn-meta {
-            background-color: #ffffff;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            box-shadow: none;
-            padding: 0.75rem 1.5rem;
-        }
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; flex-direction: column; justify-content: center; }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0; right: 0;
+        background: var(--warm-white);
+        border-bottom: 1px solid var(--rule);
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1.25rem;
+        z-index: 99;
+      }
+      .mobile-menu.open { display: flex; }
+      .mobile-menu a { text-decoration: none; color: var(--charcoal); font-weight: 500; font-size: 16px; }
+      .mobile-menu .nav-book { background: var(--forest); color: #fff !important; text-align: center; padding: 12px; border-radius: var(--radius); }
+      .hero-content { padding: 0 1.5rem; margin-left: 0; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .strip { gap: 1.25rem; }
+      .section { padding: 3.5rem 1.25rem; }
+      .doctors-grid { grid-template-columns: 1fr; }
+    }
 
-        .btn-meta:hover {
-            background-color: var(--primary);
-            color: #ffffff;
-        }
-
-        /* Containers & Typo Layouts */
-        .container {
-            max-width: 1150px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3.5rem auto;
-        }
-
-        .section-header h2 {
-            font-size: 2.25rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .section-header p {
-            color: #64748b;
-            font-size: 1.1rem;
-        }
-
-        /* Services Grid Layout */
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: #ffffff;
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            border: 1px solid #e2e8f0;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-        }
-
-        .card h3 {
-            font-size: 1.35rem;
-            color: var(--primary);
-            margin-bottom: 1rem;
-        }
-
-        /* Transparent Clean Pricing Grid */
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .price-card {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px dashed #cbd5e1;
-            padding: 1.5rem;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .price-value {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--secondary);
-            margin: 0.5rem 0;
-        }
-
-        /* Interactive Two-Column Information Blocks */
-        .info-section {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .info-img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
-        }
-
-        /* Streamlined Review Scroller */
-        .reviews-layout {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .review-node {
-            background: #ffffff;
-            padding: 1.75rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-            border-left: 4px solid var(--secondary);
-        }
-
-        .stars {
-            color: var(--accent);
-            font-size: 1.1rem;
-            margin-bottom: 0.75rem;
-        }
-
-        .review-text {
-            font-size: 0.95rem;
-            color: #475569;
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .review-author {
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--primary);
-        }
-
-        /* Footer */
-        footer {
-            background: #1e293b;
-            color: #f1f5f9;
-            padding: 4rem 2rem 2rem 2rem;
-        }
-
-        .footer-grid {
-            max-width: 1150px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 3rem;
-            border-bottom: 1px solid #334155;
-            padding-bottom: 3rem;
-        }
-
-        .footer-col h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1.25rem;
-            color: #ffffff;
-            position: relative;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            font-size: 0.9rem;
-            color: #94a3b8;
-        }
-
-        .footer-bottom a {
-            color: #ffffff;
-            text-decoration: underline;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1.25rem; text-align: center; }
-            .hero h1 { font-size: 2.25rem; }
-            .hero p { font-size: 1.1rem; }
-            .container { padding: 3rem 1.5rem; }
-        }
-    </style>
+    @media (prefers-reduced-motion: reduce) {
+      .hero-scroll-line { animation: none; }
+      * { transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo">Mahony-Rathburn Chiropractic</div>
-        <nav>
-            <a href="#services">Services</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#about">About</a>
-            <a href="#reviews">Reviews</a>
-            <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book Online</a>
-        </nav>
-    </header>
+  <!-- NAV -->
+  <nav class="nav" id="mainNav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 24 24"><path d="M12 3v18M8 7c0 0 2-2 4-2s4 2 4 2M8 17c0 0 2 2 4 2s4-2 4-2"/></svg>
+      </div>
+      <div>
+        <div class="nav-logo-text">Mahony Rathburn</div>
+        <div class="nav-logo-sub">Chiropractic</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#doctors">Our Doctors</a>
+      <a href="#testimonials">Reviews</a>
+      <a href="#contact">Contact</a>
+      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Appointment</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <section class="hero">
-        <h1>Full Spinal & Hands-On Chiropractic Care</h1>
-        <p>Providing evidence-based care tailored to protect your movement, target your pain, and optimize recovery.</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-            <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Schedule Appointment</a>
-            <a href="https://www.facebook.com/mrchiro" class="btn btn-alt" target="_blank" rel="noopener">Visit Our Facebook</a>
-        </div>
-    </section>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" onclick="closeMobile()">About</a>
+    <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#doctors" onclick="closeMobile()">Our Doctors</a>
+    <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+    <a href="#contact" onclick="closeMobile()">Contact</a>
+    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Appointment</a>
+  </div>
 
-    <!-- Services Section -->
-    <section id="services" class="container">
-        <div class="section-header">
-            <h2>Our Specialized Care</h2>
-            <p>Proudly serving communities around Fort Wayne, Leo-Cedarville, Auburn, and Grabill, IN.</p>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <h3>Chiropractic Adjustments</h3>
-                <p>Gentle, targeted joint manipulations designed to re-establish optimal dynamic structural balance, expand ranges of safe mechanical movement, and efficiently offload neural restrictions.</p>
-            </div>
-            <div class="card">
-                <h3>Graston Technique® Therapy</h3>
-                <p>An innovative, instrument-assisted specialized manual therapy option utilized to effectively locate, isolate, and systematically break down fibrotic soft-tissue adhesions and chronic scar configurations.</p>
-            </div>
-            <div class="card">
-                <h3>Comprehensive Care Planning</h3>
-                <p>Individualized biomechanical paths integrating therapeutic rehabilitation programs, strategic stretches, and custom support frameworks built strictly for long-term physiological optimization.</p>
-            </div>
-        </div>
-    </section>
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Fort Wayne, Indiana · Est. Chiropractic</p>
+      <h1>Hands-on care<br>for a <em>life in motion.</em></h1>
+      <p class="hero-desc">Dr. Orion Mahony brings 21 years of experience to every visit — treating the whole person, not just the pain.</p>
+      <div class="hero-ctas">
+        <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary">Book an Appointment</a>
+        <a href="#about" class="btn-ghost">Meet the Doctors</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="hero-scroll-line"></div>
+      scroll
+    </div>
+  </section>
 
-    <!-- Transparent Pricing Section -->
-    <section id="pricing" style="background-color: var(--bg-warm);">
-        <div class="container">
-            <div class="section-header">
-                <h2>Straightforward Pricing</h2>
-                <p>Transparent, flat-rate options focused entirely on putting patient recovery timelines ahead of complex billing layers.</p>
-            </div>
-            <div class="price-grid">
-                <div class="price-card">
-                    <h3>New Patient Visit</h3>
-                    <div class="price-value">$85</div>
-                    <p style="color: #64748b; font-size: 0.9rem;">Comprehensive Assessment</p>
-                </div>
-                <div class="price-card">
-                    <h3>Chiropractic Adjustment</h3>
-                    <div class="price-value">$50</div>
-                    <p style="color: #64748b; font-size: 0.9rem;">Targeted Spinal Care</p>
-                </div>
-                <div class="price-card">
-                    <h3>Graston Therapy Session</h3>
-                    <div class="price-value">$60</div>
-                    <p style="color: #64748b; font-size: 0.9rem;">Instrument Soft Tissue Fixes</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      8422 Union Chapel Rd, Fort Wayne IN
+    </div>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:2603191126" style="color:inherit;text-decoration:none;">(260) 319-1126</a>
+    </div>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Book online anytime
+    </div>
+    <div class="strip-item">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      21 years of experience
+    </div>
+  </div>
 
-    <!-- About Doctors Section -->
-    <section id="about" class="container">
-        <div class="info-section">
-            <div>
-                <img src="images/clinic-team.jpg" alt="Doctors at Mahony-Rathburn Chiropractic" class="info-img">
-            </div>
-            <div>
-                <h2 style="color: var(--primary); font-size: 2.25rem; margin-bottom: 1.25rem;">Meet the Team</h2>
-                <p style="margin-bottom: 1rem; color: #475569;">At Mahony-Rathburn Chiropractic, we prioritize deeply personalized clinical oversight, taking the necessary time to accurately evaluate your history, construct custom management goals, and coordinate regular active recovery milestones.</p>
-                <p style="margin-bottom: 2rem; color: #475569;">Whether managing intensive structural sports boundaries or tracking everyday ergonomic physical strains, our treatment protocols deliver stable results.</p>
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book Your Initial Visit</a>
-                    <a href="https://www.metagenics.com/" class="btn btn-meta" target="_blank" rel="noopener">Shop Metagenics Supplements</a>
-                </div>
-            </div>
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img">
+          <img src="images/office.jpg" alt="The Mahony Rathburn Chiropractic office in Fort Wayne" />
+          <div class="about-img-accent">
+            <strong>21+</strong> years of chiropractic care
+          </div>
         </div>
-    </section>
+        <div class="about-body">
+          <p class="section-label">Our Practice</p>
+          <h2 class="section-title">A return to Indiana, rooted in care.</h2>
+          <p>Mahony Rathburn Chiropractic is a hands-on, full spinal chiropractic practice located in Fort Wayne's north side — near Cedar Creek Church, Metea State Park, and just 8 minutes from I-69 and Parkview Regional Medical Center.</p>
+          <p>Dr. Orion Mahony and Dr. Kami Rathburn met at Palmer College of Chiropractic, built a thriving practice together on Orcas Island, Washington, and eventually made the journey back home to Indiana to be near family — and to serve a community they care about.</p>
+          <p>We don't rush you in and out. Every patient gets real attention, honest answers, and a care plan that fits their life.</p>
+          <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary" style="background:var(--forest);color:#fff;">Schedule a Visit</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- Reviews Section -->
-    <section id="reviews" style="background-color: var(--bg-warm);" class="container">
-        <div class="section-header">
-            <h2>What Our Patients Say</h2>
-            <p>Real feedback highlighting our dedication to clinical safety, continuous support, and patient relief.</p>
-        </div>
-        <div class="reviews-layout">
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Dr. Rathburn has been a game changer!! She has been a key role in keeping me on the volleyball court as well as having pain relief from a neck injury that cost me countless nights of sleep due to pain. Thank you Dr. Rathburn."</p>
-                <p class="review-author">— Athletic Patient Review</p>
-            </div>
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"I have seen Orion Mahony for many years. I came to him with back issues caused by a car accident. I wasn’t given much hope by other doctors but Orion has been incredible in helping me to have a normal life. He is patient and he listens."</p>
-                <p class="review-author">— Judi Lindgren</p>
-            </div>
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"During my sessions, Orion took the time to get to know me and my history. It was not a rushed 'in, adjust and onto the next patient' scenario. I would highly recommend this new and growing practice to anyone."</p>
-                <p class="review-author">— Michael Bitler</p>
-            </div>
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"I have received the excellent health services of both Doctors Rathburn and Mahony for these past 15+ years... Much gratitude and well wishes for them!"</p>
-                <p class="review-author">— Deb Martyn</p>
-            </div>
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"After 1 visit my pain in my elbow and shoulder were astonishingly better! Dr. Mahony was so attentive and caring. Already have an appointment scheduled for my daughter next week!"</p>
-                <p class="review-author">— Adrianne Wilson Robison</p>
-            </div>
-            <div class="review-node">
-                <div class="stars">★★★★★</div>
-                <p class="review-text">"Orion is amazing at working with me and my life goals... after a particular challenging accident it was recommended that I connect with someone who does Graston. It was a huge relief when that was Kami."</p>
-                <p class="review-author">— Mark O'Neill</p>
-            </div>
-        </div>
-    </section>
+  <!-- SERVICES -->
+  <section class="section" id="services">
+    <div class="section-inner">
+      <p class="section-label">What We Treat</p>
+      <h2 class="section-title">Services &amp; specialties</h2>
+      <p class="section-subtitle">We treat patients of all ages — from active teens and athletes to adults managing chronic pain and those focused on long-term wellness.</p>
+      <div class="services-grid">
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h4 style="font-size: 1.25rem; font-weight: 700;">Mahony-Rathburn Chiropractic</h4>
-                <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.75rem;">Providing safe, effective, hands-on clinical adjustment solutions focused entirely on long-term systemic patient durability.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Details</h4>
-                <p style="color: #cbd5e1; margin-top: 0.5rem;"><strong>Phone:</strong> 260-319-1126</p>
-                <p style="color: #cbd5e1;"><strong>Address:</strong> 8422 Union Chapel Rd,<br>Fort Wayne, IN 46845</p>
-            </div>
-            <div class="footer-col">
-                <h4>Patient Portals</h4>
-                <div class="footer-links">
-                    <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book on JaneApp</a>
-                    <a href="https://www.facebook.com/mrchiro" class="btn btn-alt" target="_blank" rel="noopener">Connect on Facebook</a>
-                </div>
-            </div>
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 1 10 10c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2z"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h3>Back &amp; Neck Pain</h3>
+          <p>Full spinal adjustments for acute and chronic pain, disc issues, and postural strain — using hands-on techniques tailored to each patient.</p>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Mahony-Rathburn Chiropractic. All rights reserved.</p>
-            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748b;">Online scheduling engine integrated via <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" style="color: #94a3b8;">JaneApp</a> | Products supplied by <a href="https://www.metagenics.com/" target="_blank" rel="noopener" style="color: #94a3b8;">Metagenics</a></p>
-        </div>
-    </footer>
 
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Acute Injuries</h3>
+          <p>Auto accidents, work injuries, sports injuries — we provide early, effective care to support recovery and reduce long-term complications.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h3>TMJ (Jaw Pain)</h3>
+          <p>Dr. Mahony specializes in TMJ treatment — addressing jaw clicking, locking, and related headaches through gentle, targeted adjustment.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3>Sports &amp; Teen Athletes</h3>
+          <p>Great with young athletes — helping teens recover from sports injuries, improve performance, and stay in the game longer.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Wellness &amp; Maintenance</h3>
+          <p>Ongoing chiropractic care for patients who want to stay well, move better, and prevent issues before they start.</p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h3>Upper-Cervical Specific</h3>
+          <p>Precise, gentle adjustments to the top of the spine — often powerful for headaches, migraines, and neurological symptoms.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- DOCTORS -->
+  <section class="section doctors" id="doctors">
+    <div class="section-inner">
+      <p class="section-label">Our Team</p>
+      <h2 class="section-title">Meet the doctors</h2>
+      <p class="section-subtitle">Palmer College graduates, Orcas Island veterans, and Indiana homecomers — Drs. Mahony and Rathburn bring warmth and expertise to every visit.</p>
+      <div class="doctors-grid">
+
+        <div class="doctor-card">
+          <div class="doctor-photo">
+            <img src="images/dr-mahony.jpg" alt="Dr. Orion Mahony, D.C." />
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Orion Mahony</h3>
+            <p class="doctor-credentials">D.C. · 21 Years Experience</p>
+            <p>Dr. Mahony treats musculoskeletal issues, acute injuries, TMJ, knees, back and neck pain, and is especially skilled with teens and sports-related conditions. He also practices maintenance and wellness chiropractic, and upper-cervical specific care. He trained at Palmer College of Chiropractic and spent 15 years building a practice on Orcas Island before returning to Indiana.</p>
+          </div>
+        </div>
+
+        <div class="doctor-card">
+          <div class="doctor-photo">
+            <img src="images/dr-rathburn.jpg" alt="Dr. Kami Rathburn, B.S., D.C." />
+          </div>
+          <div class="doctor-info">
+            <h3>Dr. Kami Rathburn</h3>
+            <p class="doctor-credentials">B.S., D.C. · Palmer College of Chiropractic</p>
+            <p>Born and raised in Indiana, Dr. Rathburn earned her B.S. in Biology from Bowling Green State University and graduated from Palmer College of Chiropractic in 2000. A former collegiate cross country runner, she brings an athlete's sensibility to her patient care. Dr. Rathburn is currently pursuing advanced graduate studies.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonials">
+    <div class="section-inner">
+      <p class="section-label">Patient Reviews</p>
+      <h2 class="section-title">What patients are saying</h2>
+      <p class="section-subtitle">Real words from real patients who found relief, care, and a practice worth returning to.</p>
+      <div class="testimonials-grid">
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Best chiropractor I've been to! Doesn't snap, crackle, pop everything and send you on your way. They figure out what's best for you and adjust as needed."</p>
+          <span class="testimonial-author">— Google Review</span>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Dr. Orion listens to me and is very compassionate. Very good chiropractor."</p>
+          <span class="testimonial-author">— Google Review</span>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"They have always been very nice and helpful with my adjustments. Been going ever since my accident, and they've really put me back on track. Love this place and the good job they always do!"</p>
+          <span class="testimonial-author">— Google Review</span>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Highly skilled and see the complete picture while addressing specific concerns. Kind. Runs on time."</p>
+          <span class="testimonial-author">— Google Review</span>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"Kami is amazing — she doesn't just crack your back, she goes through each vertebra and asks questions. It's not like a normal chiropractor where they just pop you and move on."</p>
+          <span class="testimonial-author">— Facebook Review</span>
+        </div>
+
+        <div class="testimonial">
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">"100% recommend. The care here is personal, thorough, and genuinely effective. I leave every appointment feeling better than when I walked in."</p>
+          <span class="testimonial-author">— Facebook Review</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING CTA -->
+  <div class="booking-cta">
+    <h2>Ready to feel better?</h2>
+    <p>New patients welcome. Book online in minutes — no referral needed.</p>
+    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-cta">Book Your Appointment →</a>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="section-inner">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Location &amp; contact</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Address</div>
+              <p>8422 Union Chapel Rd<br>Fort Wayne, IN 46845</p>
+              <p style="margin-top:4px;font-size:0.88rem;color:var(--light);">Near Cedar Creek Church &amp; Metea State Park<br>8 min from I-69 &amp; Parkview Regional</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Phone / Text</div>
+              <a href="tel:2603191126">(260) 319-1126</a>
+              <p>Call or text — we're happy to answer questions</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Email</div>
+              <a href="mailto:mahonyrathburnchiro@gmail.com">mahonyrathburnchiro@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Scheduling</div>
+              <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener">Book online at mrchiro.janeapp.com</a>
+              <p>New &amp; existing patients welcome</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="map-placeholder">
+            <iframe
+              title="Mahony Rathburn Chiropractic location map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2986.7!2d-85.0748!3d41.1742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8815e4b3e3a3b3b3%3A0x0!2s8422+Union+Chapel+Rd%2C+Fort+Wayne%2C+IN+46845!5e0!3m2!1sen!2sus!4v1"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+          <p style="margin-top:0.75rem;font-size:0.88rem;color:var(--light);text-align:center;">You will pass the driveway before the park entrance — look for us on the right.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.8);">Mahony Rathburn Chiropractic</div>
+    <div>8422 Union Chapel Rd · Fort Wayne, IN 46845 · <a href="tel:2603191126">(260) 319-1126</a></div>
+    <div class="footer-links">
+      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener">Book Online</a>
+      <a href="https://www.facebook.com/mrchiro" target="_blank" rel="noopener">Facebook</a>
+      <a href="mailto:mahonyrathburnchiro@gmail.com">Email Us</a>
+    </div>
+    <div style="margin-top:0.5rem;font-size:11px;">© 2025 Mahony-Rathburn Chiropractic, LLC. All rights reserved.</div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobile() {
+      mobileMenu.classList.remove('open');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 72;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
