@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mahony Rathburn Chiropractic | Fort Wayne, Indiana</title>
-  <meta name="description" content="Mahony Rathburn Chiropractic in Fort Wayne, Indiana. Dr. Orion Mahony provides hands-on chiropractic care for musculoskeletal issues, back and neck pain, TMJ, sports injuries, and wellness. Book online today." />
+  <meta name="description" content="Mahony Rathburn Chiropractic in Fort Wayne, Indiana. Dr. Orion Mahony provides hands-on chiropractic care for musculoskeletal issues, back and neck pain, TMJ, sports injuries, Graston technique, and wellness. Book online today." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -60,9 +60,15 @@
       gap: 10px;
       text-decoration: none;
     }
+    .nav-logo-img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
+    }
     .nav-logo-mark {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       background: var(--forest);
       border-radius: 50%;
       display: flex;
@@ -79,10 +85,10 @@
       line-height: 1.2;
     }
     .nav-logo-sub { font-size: 11px; font-family: 'Inter', sans-serif; font-weight: 400; color: var(--mid); letter-spacing: 0.04em; text-transform: uppercase; }
-    .nav-links { display: flex; align-items: center; gap: 1.75rem; }
+    .nav-links { display: flex; align-items: center; gap: 1.5rem; }
     .nav-links a {
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       color: var(--mid);
       font-weight: 500;
       transition: color 0.15s;
@@ -91,7 +97,7 @@
     .nav-book {
       background: var(--forest);
       color: #fff !important;
-      padding: 8px 18px;
+      padding: 8px 16px;
       border-radius: var(--radius);
       font-size: 13px !important;
       font-weight: 600 !important;
@@ -281,11 +287,35 @@
     .about-body p { color: var(--mid); margin-bottom: 1.1rem; font-size: 1.02rem; }
     .about-body p:last-of-type { margin-bottom: 1.75rem; }
 
+    /* ─── PHOTO GALLERY ─── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      background: var(--mist);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item.tall { aspect-ratio: 3/4; }
+
     /* ─── SERVICES ─── */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.5rem;
+      margin-bottom: 3rem;
     }
     .service-card {
       background: var(--cream);
@@ -311,9 +341,84 @@
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--forest);
+      margin-bottom: 0.4rem;
+    }
+    .service-card p { font-size: 0.92rem; color: var(--mid); line-height: 1.65; margin-bottom: 0.6rem; }
+    .service-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--sage);
+      background: var(--mist);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* ─── PRICING ─── */
+    .pricing { background: var(--cream); }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .pricing-card {
+      background: var(--warm-white);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      border: 1px solid var(--rule);
+      position: relative;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .pricing-card:hover { border-color: var(--sage); transform: translateY(-2px); }
+    .pricing-card.featured {
+      border: 2px solid var(--sage);
+    }
+    .pricing-tag {
+      position: absolute;
+      top: -1px; right: 1.5rem;
+      background: var(--sage);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 0 0 6px 6px;
+    }
+    .pricing-amount {
+      font-family: 'Lora', serif;
+      font-size: 2.6rem;
+      font-weight: 600;
+      color: var(--forest);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+    .pricing-amount sup { font-size: 1.2rem; vertical-align: super; }
+    .pricing-name {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--charcoal);
       margin-bottom: 0.5rem;
     }
-    .service-card p { font-size: 0.92rem; color: var(--mid); line-height: 1.65; }
+    .pricing-desc { font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 1rem; }
+    .pricing-who {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--sage);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pricing-who::before {
+      content: '';
+      display: inline-block;
+      width: 12px;
+      height: 1px;
+      background: var(--sage);
+    }
 
     /* ─── DOCTORS ─── */
     .doctors { background: var(--cream); }
@@ -339,15 +444,6 @@
       object-position: center top;
       display: block;
     }
-    .doctor-photo-placeholder {
-      width: 100%;
-      height: 100%;
-      background: var(--mist);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .doctor-photo-placeholder svg { width: 64px; height: 64px; stroke: var(--sage); fill: none; stroke-width: 1.5; }
     .doctor-info { padding: 1.5rem; }
     .doctor-info h3 {
       font-family: 'Lora', serif;
@@ -364,7 +460,83 @@
       text-transform: uppercase;
       margin-bottom: 0.8rem;
     }
-    .doctor-info p { font-size: 0.93rem; color: var(--mid); line-height: 1.65; }
+    .doctor-info p { font-size: 0.93rem; color: var(--mid); line-height: 1.65; margin-bottom: 0.8rem; }
+    .doctor-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 0.75rem;
+    }
+    .doctor-tag {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--forest);
+      background: var(--mist);
+      padding: 3px 9px;
+      border-radius: 20px;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─── SUPPLEMENTS ─── */
+    .supplements {
+      background: var(--forest);
+      padding: 4rem 2rem;
+    }
+    .supplements-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .supplements h2 {
+      font-family: 'Lora', serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+    .supplements p {
+      color: rgba(255,255,255,0.72);
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .supplements-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 0.6rem;
+    }
+    .btn-supp {
+      display: inline-block;
+      background: #fff;
+      color: var(--forest);
+      font-weight: 700;
+      font-size: 14px;
+      padding: 13px 28px;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-supp:hover { background: var(--mist); transform: translateY(-1px); }
+    .supplements-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .supp-pill {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.85);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 13px;
+      font-weight: 500;
+    }
 
     /* ─── TESTIMONIALS ─── */
     .testimonials-grid {
@@ -429,7 +601,7 @@
 
     /* ─── BOOKING CTA ─── */
     .booking-cta {
-      background: var(--forest);
+      background: var(--charcoal);
       padding: 5rem 2rem;
       text-align: center;
     }
@@ -440,11 +612,11 @@
       font-weight: 600;
       margin-bottom: 0.75rem;
     }
-    .booking-cta p { color: rgba(255,255,255,0.72); font-size: 1.05rem; margin-bottom: 2rem; }
+    .booking-cta p { color: rgba(255,255,255,0.65); font-size: 1.05rem; margin-bottom: 2rem; }
     .btn-cta {
       display: inline-block;
-      background: #fff;
-      color: var(--forest);
+      background: var(--forest);
+      color: #fff;
       font-weight: 700;
       font-size: 15px;
       padding: 15px 36px;
@@ -453,7 +625,7 @@
       letter-spacing: 0.02em;
       transition: background 0.15s, transform 0.1s;
     }
-    .btn-cta:hover { background: var(--mist); transform: translateY(-1px); }
+    .btn-cta:hover { background: var(--sage); transform: translateY(-1px); }
 
     /* ─── FOOTER ─── */
     footer {
@@ -491,10 +663,11 @@
       .mobile-menu a { text-decoration: none; color: var(--charcoal); font-weight: 500; font-size: 16px; }
       .mobile-menu .nav-book { background: var(--forest); color: #fff !important; text-align: center; padding: 12px; border-radius: var(--radius); }
       .hero-content { padding: 0 1.5rem; margin-left: 0; }
-      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-grid, .contact-grid, .supplements-inner { grid-template-columns: 1fr; gap: 2.5rem; }
       .strip { gap: 1.25rem; }
       .section { padding: 3.5rem 1.25rem; }
       .doctors-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -508,7 +681,8 @@
   <!-- NAV -->
   <nav class="nav" id="mainNav">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">
+      <img src="images/logo.png" alt="Mahony Rathburn Chiropractic logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-mark" style="display:none;">
         <svg viewBox="0 0 24 24"><path d="M12 3v18M8 7c0 0 2-2 4-2s4 2 4 2M8 17c0 0 2 2 4 2s4-2 4-2"/></svg>
       </div>
       <div>
@@ -519,10 +693,11 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
       <a href="#doctors">Our Doctors</a>
-      <a href="#testimonials">Reviews</a>
+      <a href="#supplements">Supplements</a>
       <a href="#contact">Contact</a>
-      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Appointment</a>
+      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Now</a>
     </div>
     <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
       <span></span><span></span><span></span>
@@ -533,17 +708,18 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#about" onclick="closeMobile()">About</a>
     <a href="#services" onclick="closeMobile()">Services</a>
+    <a href="#pricing" onclick="closeMobile()">Pricing</a>
     <a href="#doctors" onclick="closeMobile()">Our Doctors</a>
-    <a href="#testimonials" onclick="closeMobile()">Reviews</a>
+    <a href="#supplements" onclick="closeMobile()">Supplements</a>
     <a href="#contact" onclick="closeMobile()">Contact</a>
-    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Appointment</a>
+    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Now</a>
   </div>
 
   <!-- HERO -->
   <section class="hero" id="top">
     <div class="hero-bg"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Fort Wayne, Indiana · Est. Chiropractic</p>
+      <p class="hero-eyebrow">Fort Wayne, Indiana · Full Spinal &amp; Hands-On Care</p>
       <h1>Hands-on care<br>for a <em>life in motion.</em></h1>
       <p class="hero-desc">Dr. Orion Mahony brings 21 years of experience to every visit — treating the whole person, not just the pain.</p>
       <div class="hero-ctas">
@@ -582,7 +758,7 @@
     <div class="section-inner">
       <div class="about-grid">
         <div class="about-img">
-          <img src="images/office.jpg" alt="The Mahony Rathburn Chiropractic office in Fort Wayne" />
+          <img src="images/office.jpg" alt="Mahony Rathburn Chiropractic waiting room" />
           <div class="about-img-accent">
             <strong>21+</strong> years of chiropractic care
           </div>
@@ -594,6 +770,25 @@
           <p>Dr. Orion Mahony and Dr. Kami Rathburn met at Palmer College of Chiropractic, built a thriving practice together on Orcas Island, Washington, and eventually made the journey back home to Indiana to be near family — and to serve a community they care about.</p>
           <p>We don't rush you in and out. Every patient gets real attention, honest answers, and a care plan that fits their life.</p>
           <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary" style="background:var(--forest);color:#fff;">Schedule a Visit</a>
+        </div>
+      </div>
+
+      <!-- GALLERY -->
+      <div style="margin-top:4rem;">
+        <p class="section-label">Inside Our Office</p>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="images/sign-outside.jpg" alt="Mahony Rathburn Chiropractic front sign" />
+          </div>
+          <div class="gallery-item">
+            <img src="images/adjustment-1.jpg" alt="Chiropractic adjustment in progress" />
+          </div>
+          <div class="gallery-item">
+            <img src="images/graston.jpg" alt="Graston technique tools and therapy" />
+          </div>
+          <div class="gallery-item">
+            <img src="images/doctors-together.jpg" alt="Dr. Orion Mahony and Dr. Kami Rathburn" />
+          </div>
         </div>
       </div>
     </div>
@@ -613,6 +808,7 @@
           </div>
           <h3>Back &amp; Neck Pain</h3>
           <p>Full spinal adjustments for acute and chronic pain, disc issues, and postural strain — using hands-on techniques tailored to each patient.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
         <div class="service-card">
@@ -621,6 +817,7 @@
           </div>
           <h3>Acute Injuries</h3>
           <p>Auto accidents, work injuries, sports injuries — we provide early, effective care to support recovery and reduce long-term complications.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
         <div class="service-card">
@@ -628,7 +825,8 @@
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
           </div>
           <h3>TMJ (Jaw Pain)</h3>
-          <p>Dr. Mahony specializes in TMJ treatment — addressing jaw clicking, locking, and related headaches through gentle, targeted adjustment.</p>
+          <p>Addressing jaw clicking, locking, and related headaches through gentle, targeted adjustment and soft tissue work.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
         <div class="service-card">
@@ -636,7 +834,8 @@
             <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
           <h3>Sports &amp; Teen Athletes</h3>
-          <p>Great with young athletes — helping teens recover from sports injuries, improve performance, and stay in the game longer.</p>
+          <p>Helping young athletes recover from sports injuries, improve performance, and stay in the game longer.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
         <div class="service-card">
@@ -645,6 +844,7 @@
           </div>
           <h3>Wellness &amp; Maintenance</h3>
           <p>Ongoing chiropractic care for patients who want to stay well, move better, and prevent issues before they start.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
         <div class="service-card">
@@ -653,9 +853,63 @@
           </div>
           <h3>Upper-Cervical Specific</h3>
           <p>Precise, gentle adjustments to the top of the spine — often powerful for headaches, migraines, and neurological symptoms.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M3 12c0 0 2-4 9-4s9 4 9 4"/><path d="M3 16c0 0 2-4 9-4s9 4 9 4"/><path d="M6 8l3-4M18 8l-3-4"/></svg>
+          </div>
+          <h3>Graston Technique</h3>
+          <p>A specialized soft tissue therapy using stainless steel instruments to break up scar tissue, reduce chronic inflammation, and restore function — particularly effective for tendinopathy, plantar fasciitis, and repetitive strain.</p>
+          <span class="service-badge">Dr. Rathburn only</span>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 0 0 1.946-.806 3.42 3.42 0 0 1 4.438 0 3.42 3.42 0 0 0 1.946.806 3.42 3.42 0 0 1 3.138 3.138 3.42 3.42 0 0 0 .806 1.946 3.42 3.42 0 0 1 0 4.438 3.42 3.42 0 0 0-.806 1.946 3.42 3.42 0 0 1-3.138 3.138 3.42 3.42 0 0 0-1.946.806 3.42 3.42 0 0 1-4.438 0 3.42 3.42 0 0 0-1.946-.806 3.42 3.42 0 0 1-3.138-3.138 3.42 3.42 0 0 0-.806-1.946 3.42 3.42 0 0 1 0-4.438 3.42 3.42 0 0 0 .806-1.946 3.42 3.42 0 0 1 3.138-3.138z"/></svg>
+          </div>
+          <h3>Knees &amp; Extremities</h3>
+          <p>Beyond the spine — care for knee pain, shoulder issues, and other joint problems that respond well to chiropractic treatment.</p>
+          <span class="service-badge">Dr. Mahony &amp; Dr. Rathburn</span>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="section pricing" id="pricing">
+    <div class="section-inner">
+      <p class="section-label">Transparent Pricing</p>
+      <h2 class="section-title">Simple, straightforward fees</h2>
+      <p class="section-subtitle">No surprise bills. Here's exactly what to expect.</p>
+      <div class="pricing-grid">
+
+        <div class="pricing-card featured">
+          <div class="pricing-tag">New Patients</div>
+          <div class="pricing-amount"><sup>$</sup>85</div>
+          <div class="pricing-name">New Patient Exam &amp; Adjustment</div>
+          <p class="pricing-desc">Your first visit includes a full health history review, hands-on examination, and a chiropractic adjustment — all in one appointment.</p>
+          <div class="pricing-who">Dr. Mahony &amp; Dr. Rathburn</div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-amount"><sup>$</sup>50</div>
+          <div class="pricing-name">Chiropractic Adjustment</div>
+          <p class="pricing-desc">Standard adjustment visit for established patients. Full spinal and hands-on care tailored to your current needs.</p>
+          <div class="pricing-who">Dr. Mahony &amp; Dr. Rathburn</div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-amount"><sup>$</sup>60</div>
+          <div class="pricing-name">Graston Adjustment</div>
+          <p class="pricing-desc">Instrument-assisted soft tissue mobilization combined with chiropractic adjustment. Especially effective for chronic or stubborn soft tissue conditions.</p>
+          <div class="pricing-who">Dr. Rathburn only</div>
+        </div>
+
+      </div>
+      <p style="margin-top:1.5rem;font-size:0.88rem;color:var(--light);text-align:center;">Questions about payment or insurance? Call or text us at <a href="tel:2603191126" style="color:var(--sage);">(260) 319-1126</a> and we'll be happy to help.</p>
     </div>
   </section>
 
@@ -665,30 +919,77 @@
       <p class="section-label">Our Team</p>
       <h2 class="section-title">Meet the doctors</h2>
       <p class="section-subtitle">Palmer College graduates, Orcas Island veterans, and Indiana homecomers — Drs. Mahony and Rathburn bring warmth and expertise to every visit.</p>
-      <div class="doctors-grid">
+      <div style="background:var(--warm-white);border-radius:var(--radius-lg);border:1px solid var(--rule);overflow:hidden;">
+        <div style="aspect-ratio:16/7;overflow:hidden;">
+          <img src="images/doctors-together.jpg" alt="Dr. Orion Mahony and Dr. Kami Rathburn" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;" />
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
 
-        <div class="doctor-card">
-          <div class="doctor-photo">
-            <img src="images/dr-mahony.jpg" alt="Dr. Orion Mahony, D.C." />
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Orion Mahony</h3>
+          <div style="padding:1.75rem 1.75rem 1.75rem 1.75rem;border-right:1px solid var(--rule);">
+            <h3 style="font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:var(--forest);margin-bottom:0.2rem;">Dr. Orion Mahony</h3>
             <p class="doctor-credentials">D.C. · 21 Years Experience</p>
-            <p>Dr. Mahony treats musculoskeletal issues, acute injuries, TMJ, knees, back and neck pain, and is especially skilled with teens and sports-related conditions. He also practices maintenance and wellness chiropractic, and upper-cervical specific care. He trained at Palmer College of Chiropractic and spent 15 years building a practice on Orcas Island before returning to Indiana.</p>
+            <p style="font-size:0.93rem;color:var(--mid);line-height:1.65;margin-bottom:0.8rem;">Dr. Mahony treats musculoskeletal issues, acute injuries, TMJ, knees, back and neck pain, and is especially skilled with teens and sports-related conditions. He also practices maintenance and wellness chiropractic, and upper-cervical specific care. He trained at Palmer College of Chiropractic and spent 15+ years building a practice on Orcas Island before returning to Indiana.</p>
+            <div class="doctor-services">
+              <span class="doctor-tag">Back &amp; Neck</span>
+              <span class="doctor-tag">TMJ</span>
+              <span class="doctor-tag">Sports</span>
+              <span class="doctor-tag">Upper-Cervical</span>
+              <span class="doctor-tag">Wellness</span>
+              <span class="doctor-tag">Knees</span>
+              <span class="doctor-tag">Acute Injuries</span>
+            </div>
           </div>
-        </div>
 
-        <div class="doctor-card">
-          <div class="doctor-photo">
-            <img src="images/dr-rathburn.jpg" alt="Dr. Kami Rathburn, B.S., D.C." />
-          </div>
-          <div class="doctor-info">
-            <h3>Dr. Kami Rathburn</h3>
+          <div style="padding:1.75rem;">
+            <h3 style="font-family:'Lora',serif;font-size:1.3rem;font-weight:600;color:var(--forest);margin-bottom:0.2rem;">Dr. Kami Rathburn</h3>
             <p class="doctor-credentials">B.S., D.C. · Palmer College of Chiropractic</p>
-            <p>Born and raised in Indiana, Dr. Rathburn earned her B.S. in Biology from Bowling Green State University and graduated from Palmer College of Chiropractic in 2000. A former collegiate cross country runner, she brings an athlete's sensibility to her patient care. Dr. Rathburn is currently pursuing advanced graduate studies.</p>
+            <p style="font-size:0.93rem;color:var(--mid);line-height:1.65;margin-bottom:0.8rem;">Born and raised in Indiana, Dr. Rathburn earned her B.S. in Biology from Bowling Green State University and graduated from Palmer College of Chiropractic in 2000. A former collegiate cross country runner, she brings an athlete's understanding to patient care — and is the practice's certified Graston practitioner. Currently pursuing advanced graduate studies.</p>
+            <div class="doctor-services">
+              <span class="doctor-tag">Back &amp; Neck</span>
+              <span class="doctor-tag">TMJ</span>
+              <span class="doctor-tag">Graston</span>
+              <span class="doctor-tag">Sports</span>
+              <span class="doctor-tag">Upper-Cervical</span>
+              <span class="doctor-tag">Wellness</span>
+              <span class="doctor-tag">Acute Injuries</span>
+            </div>
           </div>
-        </div>
 
+        </div>
+      </div>
+
+      <style>
+        @media (max-width: 640px) {
+          .doctors-together-bios { grid-template-columns: 1fr !important; }
+          .doctors-together-bios > div:first-child { border-right: none !important; border-bottom: 1px solid var(--rule); }
+        }
+      </style>
+    </div>
+  </section>
+
+  <!-- SUPPLEMENTS -->
+  <section class="supplements" id="supplements">
+    <div class="supplements-inner">
+      <div>
+        <p class="supplements-label">Nutritional Support</p>
+        <h2>Metagenics supplements, available through our practice</h2>
+        <p>We carry and recommend Metagenics — a professional-grade, science-backed line of supplements available exclusively through licensed healthcare providers. Order online through our practice store and have them shipped directly to your door.</p>
+        <a href="REPLACE_WITH_YOUR_METAGENICS_LINK" target="_blank" rel="noopener" class="btn-supp">Visit Our Supplement Store →</a>
+      </div>
+      <div>
+        <p class="supplements-label" style="color:rgba(255,255,255,0.45);">Why Metagenics</p>
+        <div class="supplements-pills">
+          <span class="supp-pill">Practitioner-exclusive</span>
+          <span class="supp-pill">Science-based formulas</span>
+          <span class="supp-pill">Non-GMO verified</span>
+          <span class="supp-pill">Third-party tested</span>
+          <span class="supp-pill">Direct to your door</span>
+          <span class="supp-pill">60-day guarantee</span>
+          <span class="supp-pill">Immune support</span>
+          <span class="supp-pill">Gut health</span>
+          <span class="supp-pill">Magnesium &amp; Omega-3</span>
+          <span class="supp-pill">Vitamins &amp; minerals</span>
+        </div>
       </div>
     </div>
   </section>
@@ -794,6 +1095,16 @@
               <p>New &amp; existing patients welcome</p>
             </div>
           </div>
+          <div class="contact-item">
+            <div class="contact-icon">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">Facebook</div>
+              <a href="https://www.facebook.com/mrchiro" target="_blank" rel="noopener">facebook.com/mrchiro</a>
+              <p>Follow us for updates and announcements</p>
+            </div>
+          </div>
         </div>
         <div>
           <div class="map-placeholder">
@@ -813,12 +1124,14 @@
 
   <!-- FOOTER -->
   <footer>
-    <div style="font-family:'Lora',serif;font-size:1.1rem;font-weight:600;color:rgba(255,255,255,0.8);">Mahony Rathburn Chiropractic</div>
+    <img src="images/logo.png" alt="Mahony Rathburn Chiropractic" style="height:36px;object-fit:contain;opacity:0.7;" onerror="this.style.display='none'" />
+    <div style="font-family:'Lora',serif;font-size:1.05rem;font-weight:600;color:rgba(255,255,255,0.8);">Mahony Rathburn Chiropractic</div>
     <div>8422 Union Chapel Rd · Fort Wayne, IN 46845 · <a href="tel:2603191126">(260) 319-1126</a></div>
     <div class="footer-links">
       <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener">Book Online</a>
       <a href="https://www.facebook.com/mrchiro" target="_blank" rel="noopener">Facebook</a>
       <a href="mailto:mahonyrathburnchiro@gmail.com">Email Us</a>
+      <a href="REPLACE_WITH_YOUR_METAGENICS_LINK" target="_blank" rel="noopener">Metagenics Store</a>
     </div>
     <div style="margin-top:0.5rem;font-size:11px;">© 2025 Mahony-Rathburn Chiropractic, LLC. All rights reserved.</div>
   </footer>
