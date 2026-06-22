@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahony Rathburn Chiropractic</title>
+    <title>Mahony-Rathburn Chiropractic</title>
     <style>
-        /* Base Styles & Modern Clean Fonts */
+        /* Design Variables & Warm Palette */
         :root {
-            --primary: #1e3a8a; /* Deep, professional blue */
-            --secondary: #0d9488; /* Fresh accent teal */
-            --dark: #1f2937;
-            --light: #f9fafb;
+            --primary: #1e3a8a;       /* Deep clinical blue */
+            --secondary: #0d9488;     /* Energetic teal */
+            --accent: #f59e0b;        /* Warm gold for highlights/stars */
+            --text-dark: #2c3e50;     /* Soft dark slate for readability */
+            --bg-light: #fdfefe;      /* Clean, off-white background */
+            --bg-warm: #f7fafc;       /* Gentle section transition grey */
         }
 
         * {
@@ -21,211 +23,449 @@
         }
 
         body {
-            color: var(--dark);
+            color: var(--text-dark);
             line-height: 1.6;
-            background-color: #ffffff;
+            background-color: var(--bg-light);
         }
 
-        /* Navigation */
+        /* Navigation Header */
         header {
             background: #ffffff;
-            padding: 1rem 2rem;
+            padding: 1.25rem 2rem;
             position: sticky;
             top: 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
         }
 
         .logo {
             font-weight: 700;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
             color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
         nav a {
             text-decoration: none;
-            color: var(--dark);
-            margin-left: 1.5rem;
+            color: var(--text-dark);
             font-weight: 500;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
         }
 
         nav a:hover {
             color: var(--secondary);
         }
 
-        /* Hero Section */
+        /* Hero Section (Taller & Lower Opacity Overlay) */
         .hero {
-            background: linear-gradient(rgba(30, 58, 138, 0.85), rgba(30, 58, 138, 0.85)), url('images/hero-bg.jpg') no-repeat center center/cover;
+            background: linear-gradient(rgba(30, 58, 138, 0.55), rgba(30, 58, 138, 0.55)), url('images/hero-bg.jpg') no-repeat center center/cover;
             color: #ffffff;
-            padding: 6rem 2rem;
+            min-height: 75vh; /* Increased height */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 4rem 2rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
+            font-size: 3.25rem;
+            margin-bottom: 1.25rem;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            max-width: 900px;
         }
 
         .hero p {
-            font-size: 1.25rem;
-            max-width: 600px;
-            margin: 0 auto 2rem auto;
-            opacity: 0.9;
+            font-size: 1.35rem;
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.3);
         }
 
-        /* Buttons */
+        /* Premium Buttons */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--secondary);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 0.85rem 1.75rem;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 6px;
             font-weight: 600;
-            transition: background 0.2s;
+            box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+            transition: all 0.2s ease;
         }
 
         .btn:hover {
             background-color: #0f766e;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(13, 148, 136, 0.3);
         }
 
-        /* Content Sections */
+        .btn-alt {
+            background-color: #3b5998; /* Facebook Corporate Blue */
+            box-shadow: 0 4px 12px rgba(59, 89, 152, 0.2);
+        }
+
+        .btn-alt:hover {
+            background-color: #2d4373;
+            box-shadow: 0 6px 16px rgba(59, 89, 152, 0.3);
+        }
+
+        .btn-meta {
+            background-color: #ffffff;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+            padding: 0.75rem 1.5rem;
+        }
+
+        .btn-meta:hover {
+            background-color: var(--primary);
+            color: #ffffff;
+        }
+
+        /* Containers & Typo Layouts */
         .container {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
         }
 
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-header h2 {
+            font-size: 2.25rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+        }
+
+        /* Services Grid Layout */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2.5rem;
-            margin-top: 2rem;
+            gap: 2rem;
         }
 
         .card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 8px;
-            border-top: 4px solid var(--primary);
+            background: #ffffff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        h2 {
-            font-size: 2rem;
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
             color: var(--primary);
-            text-align: center;
             margin-bottom: 1rem;
         }
 
-        /* Split Info Section */
+        /* Transparent Clean Pricing Grid */
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .price-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px dashed #cbd5e1;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .price-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin: 0.5rem 0;
+        }
+
+        /* Interactive Two-Column Information Blocks */
         .info-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 4rem;
             align-items: center;
         }
 
         .info-img {
             width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+        }
+
+        /* Streamlined Review Scroller */
+        .reviews-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-node {
+            background: #ffffff;
+            padding: 1.75rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-text {
+            font-size: 0.95rem;
+            color: #475569;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--primary);
         }
 
         /* Footer */
         footer {
-            background: var(--dark);
-            color: #ffffff;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            background: #1e293b;
+            color: #f1f5f9;
+            padding: 4rem 2rem 2rem 2rem;
         }
 
-        footer a {
+        .footer-grid {
+            max-width: 1150px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1.25rem;
+            color: #ffffff;
+            position: relative;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        .footer-bottom a {
             color: #ffffff;
             text-decoration: underline;
         }
 
+        /* Responsive Breakpoints */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; }
-            nav a { margin: 0 0.75rem; }
-            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 1.25rem; text-align: center; }
+            .hero h1 { font-size: 2.25rem; }
+            .hero p { font-size: 1.1rem; }
+            .container { padding: 3rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Mahony Rathburn Chiropractic</div>
+        <div class="logo">Mahony-Rathburn Chiropractic</div>
         <nav>
             <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
             <a href="#about">About</a>
-            <a href="#contact">Location & Hours</a>
+            <a href="#reviews">Reviews</a>
             <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book Online</a>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Patient-Centered Chiropractic Care</h1>
-        <p>Helping you move better, feel better, and live a healthier, active life.</p>
-        <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Schedule an Appointment</a>
+        <h1>Full Spinal & Hands-On Chiropractic Care</h1>
+        <p>Providing evidence-based care tailored to protect your movement, target your pain, and optimize recovery.</p>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
+            <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Schedule Appointment</a>
+            <a href="https://www.facebook.com/mrchiro" class="btn btn-alt" target="_blank" rel="noopener">Visit Our Facebook</a>
+        </div>
     </section>
 
+    <!-- Services Section -->
     <section id="services" class="container">
-        <h2>Our Services</h2>
+        <div class="section-header">
+            <h2>Our Specialized Care</h2>
+            <p>Proudly serving communities around Fort Wayne, Leo-Cedarville, Auburn, and Grabill, IN.</p>
+        </div>
         <div class="grid">
             <div class="card">
                 <h3>Chiropractic Adjustments</h3>
-                <p>Spinal alignment and joint mobilization techniques designed to relieve pressure, improve range of motion, and restore optimal function.</p>
+                <p>Gentle, targeted joint manipulations designed to re-establish optimal dynamic structural balance, expand ranges of safe mechanical movement, and efficiently offload neural restrictions.</p>
             </div>
             <div class="card">
-                <h3>Soft Tissue Therapy</h3>
-                <p>Targeted manual therapies to alleviate muscle tension, reduce inflammation, and accelerate recovery from everyday strains or repetitive injuries.</p>
+                <h3>Graston Technique® Therapy</h3>
+                <p>An innovative, instrument-assisted specialized manual therapy option utilized to effectively locate, isolate, and systematically break down fibrotic soft-tissue adhesions and chronic scar configurations.</p>
             </div>
             <div class="card">
-                <h3>Active Rehabilitation</h3>
-                <p>Customized stretching and strengthening exercises tailored to your movement patterns to build stability and prevent recurring discomfort.</p>
+                <h3>Comprehensive Care Planning</h3>
+                <p>Individualized biomechanical paths integrating therapeutic rehabilitation programs, strategic stretches, and custom support frameworks built strictly for long-term physiological optimization.</p>
             </div>
         </div>
     </section>
 
-    <section id="about" style="background-color: var(--light);">
-        <div class="container info-section">
-            <div>
-                <h2>Meet the Doctors</h2>
-                <p style="margin-top: 1rem;">At Mahony Rathburn Chiropractic, our focus is on treating the whole person, not just the symptoms. We specialize in evidence-based care to help athletes, families, and individuals recover from pain and optimize their physical health.</p>
-                <p style="margin-top: 1rem;">Every treatment plan is completely customized to your unique goals, matching individual adjustment techniques with physical rehabilitation for long-term wellness.</p>
+    <!-- Transparent Pricing Section -->
+    <section id="pricing" style="background-color: var(--bg-warm);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Straightforward Pricing</h2>
+                <p>Transparent, flat-rate options focused entirely on putting patient recovery timelines ahead of complex billing layers.</p>
             </div>
-            <div>
-                <img src="images/clinic-team.jpg" alt="The doctors at Mahony Rathburn Chiropractic" class="info-img">
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="container">
-        <h2>Location & Hours</h2>
-        <div class="grid">
-            <div>
-                <h3>Contact Information</h3>
-                <p style="margin-top: 1rem;"><strong>Address:</strong> [Insert Street Address Here]</p>
-                <p><strong>Phone:</strong> [Insert Phone Number Here]</p>
-                <p style="margin-top: 1rem;"><a href="https://www.facebook.com/mrchiro" target="_blank" rel="noopener">Find us on Facebook</a></p>
-            </div>
-            <div>
-                <h3>Our Hours</h3>
-                <p style="margin-top: 1rem;">Monday – Friday: [Insert Hours]</p>
-                <p>Saturday – Sunday: Closed</p>
-                <p style="margin-top: 1.5rem;"><a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book via JaneApp</a></p>
+            <div class="price-grid">
+                <div class="price-card">
+                    <h3>New Patient Visit</h3>
+                    <div class="price-value">$85</div>
+                    <p style="color: #64748b; font-size: 0.9rem;">Comprehensive Assessment</p>
+                </div>
+                <div class="price-card">
+                    <h3>Chiropractic Adjustment</h3>
+                    <div class="price-value">$50</div>
+                    <p style="color: #64748b; font-size: 0.9rem;">Targeted Spinal Care</p>
+                </div>
+                <div class="price-card">
+                    <h3>Graston Therapy Session</h3>
+                    <div class="price-value">$60</div>
+                    <p style="color: #64748b; font-size: 0.9rem;">Instrument Soft Tissue Fixes</p>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- About Doctors Section -->
+    <section id="about" class="container">
+        <div class="info-section">
+            <div>
+                <img src="images/clinic-team.jpg" alt="Doctors at Mahony-Rathburn Chiropractic" class="info-img">
+            </div>
+            <div>
+                <h2 style="color: var(--primary); font-size: 2.25rem; margin-bottom: 1.25rem;">Meet the Team</h2>
+                <p style="margin-bottom: 1rem; color: #475569;">At Mahony-Rathburn Chiropractic, we prioritize deeply personalized clinical oversight, taking the necessary time to accurately evaluate your history, construct custom management goals, and coordinate regular active recovery milestones.</p>
+                <p style="margin-bottom: 2rem; color: #475569;">Whether managing intensive structural sports boundaries or tracking everyday ergonomic physical strains, our treatment protocols deliver stable results.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book Your Initial Visit</a>
+                    <a href="https://www.metagenics.com/" class="btn btn-meta" target="_blank" rel="noopener">Shop Metagenics Supplements</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" style="background-color: var(--bg-warm);" class="container">
+        <div class="section-header">
+            <h2>What Our Patients Say</h2>
+            <p>Real feedback highlighting our dedication to clinical safety, continuous support, and patient relief.</p>
+        </div>
+        <div class="reviews-layout">
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Dr. Rathburn has been a game changer!! She has been a key role in keeping me on the volleyball court as well as having pain relief from a neck injury that cost me countless nights of sleep due to pain. Thank you Dr. Rathburn."</p>
+                <p class="review-author">— Athletic Patient Review</p>
+            </div>
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I have seen Orion Mahony for many years. I came to him with back issues caused by a car accident. I wasn’t given much hope by other doctors but Orion has been incredible in helping me to have a normal life. He is patient and he listens."</p>
+                <p class="review-author">— Judi Lindgren</p>
+            </div>
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"During my sessions, Orion took the time to get to know me and my history. It was not a rushed 'in, adjust and onto the next patient' scenario. I would highly recommend this new and growing practice to anyone."</p>
+                <p class="review-author">— Michael Bitler</p>
+            </div>
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"I have received the excellent health services of both Doctors Rathburn and Mahony for these past 15+ years... Much gratitude and well wishes for them!"</p>
+                <p class="review-author">— Deb Martyn</p>
+            </div>
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"After 1 visit my pain in my elbow and shoulder were astonishingly better! Dr. Mahony was so attentive and caring. Already have an appointment scheduled for my daughter next week!"</p>
+                <p class="review-author">— Adrianne Wilson Robison</p>
+            </div>
+            <div class="review-node">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Orion is amazing at working with me and my life goals... after a particular challenging accident it was recommended that I connect with someone who does Graston. It was a huge relief when that was Kami."</p>
+                <p class="review-author">— Mark O'Neill</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Mahony Rathburn Chiropractic. All rights reserved.</p>
-        <p style="font-size: 0.85rem; margin-top: 0.5rem;">Online scheduling powered by <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener">JaneApp</a></p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-size: 1.25rem; font-weight: 700;">Mahony-Rathburn Chiropractic</h4>
+                <p style="color: #94a3b8; font-size: 0.95rem; margin-top: 0.75rem;">Providing safe, effective, hands-on clinical adjustment solutions focused entirely on long-term systemic patient durability.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Details</h4>
+                <p style="color: #cbd5e1; margin-top: 0.5rem;"><strong>Phone:</strong> 260-319-1126</p>
+                <p style="color: #cbd5e1;"><strong>Address:</strong> 8422 Union Chapel Rd,<br>Fort Wayne, IN 46845</p>
+            </div>
+            <div class="footer-col">
+                <h4>Patient Portals</h4>
+                <div class="footer-links">
+                    <a href="https://mrchiro.janeapp.com/" class="btn" target="_blank" rel="noopener">Book on JaneApp</a>
+                    <a href="https://www.facebook.com/mrchiro" class="btn btn-alt" target="_blank" rel="noopener">Connect on Facebook</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mahony-Rathburn Chiropractic. All rights reserved.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748b;">Online scheduling engine integrated via <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" style="color: #94a3b8;">JaneApp</a> | Products supplied by <a href="https://www.metagenics.com/" target="_blank" rel="noopener" style="color: #94a3b8;">Metagenics</a></p>
+        </div>
     </footer>
 
 </body>
