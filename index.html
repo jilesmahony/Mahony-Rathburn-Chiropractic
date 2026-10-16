@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#2D4A35" />
   <title>Mahony-Rathburn Chiropractic | Fort Wayne, Indiana</title>
   <meta name="description" content="Mahony-Rathburn Chiropractic in Fort Wayne, Indiana. Dr. Orion Mahony provides hands-on chiropractic care for musculoskeletal issues, back and neck pain, TMJ, sports injuries, Graston technique, and wellness. Book online today." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -24,6 +25,7 @@
       --rule:       rgba(0,0,0,0.10);
       --radius:     8px;
       --radius-lg:  16px;
+      --nav-h:      60px;
     }
 
     html { scroll-behavior: smooth; }
@@ -38,9 +40,7 @@
       -webkit-text-size-adjust: 100%;
     }
 
-    /* ── TAP TARGET BASELINE ── */
-    a, button { min-height: 44px; min-width: 44px; }
-    a { display: inline-flex; align-items: center; }
+    img { max-width: 100%; }
 
     /* ─── NAV ─── */
     .nav {
@@ -51,7 +51,7 @@
       align-items: center;
       justify-content: space-between;
       padding: 0 1.25rem;
-      height: 60px;
+      height: var(--nav-h);
       background: rgba(253,252,250,0.95);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
@@ -71,13 +71,14 @@
       height: 36px;
       object-fit: contain;
       display: block;
+      flex-shrink: 0;
     }
     .nav-logo-mark {
       width: 36px;
       height: 36px;
       background: var(--forest);
       border-radius: 50%;
-      display: flex;
+      display: none;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
@@ -92,55 +93,58 @@
     }
     .nav-logo-sub { font-size: 10px; font-family: 'Inter', sans-serif; font-weight: 400; color: var(--mid); letter-spacing: 0.04em; text-transform: uppercase; }
 
-    /* Desktop nav links — hidden on mobile */
-    .nav-links { display: flex; align-items: center; gap: 1.25rem; }
+    /* Desktop nav links — HIDDEN by default, shown at 900px+ */
+    .nav-links { display: none; align-items: center; gap: 1.25rem; }
     .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-width: 44px;
       text-decoration: none;
       font-size: 13px;
       color: var(--mid);
       font-weight: 500;
       transition: color 0.15s;
-      min-height: unset;
     }
     .nav-links a:hover { color: var(--forest); }
-    .nav-book {
+    .nav-links .nav-book {
       background: var(--forest);
-      color: #fff !important;
+      color: #fff;
       padding: 8px 16px;
       border-radius: var(--radius);
-      font-size: 13px !important;
-      font-weight: 600 !important;
+      font-size: 13px;
+      font-weight: 600;
       letter-spacing: 0.02em;
-      transition: background 0.15s !important;
+      transition: background 0.15s;
     }
-    .nav-book:hover { background: var(--sage) !important; }
+    .nav-links .nav-book:hover { background: var(--sage); color: #fff; }
 
     .nav-right { display: flex; align-items: center; gap: 0.75rem; }
 
     /* Mobile book button in nav */
     .nav-book-mobile {
-      display: none;
+      display: inline-flex;
       background: var(--forest);
       color: #fff;
-      padding: 8px 14px;
+      padding: 0 14px;
+      height: 40px;
       border-radius: var(--radius);
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 0.02em;
       text-decoration: none;
-      min-height: 38px;
       align-items: center;
+      justify-content: center;
+      white-space: nowrap;
     }
 
     .nav-hamburger {
-      display: none;
+      display: flex;
       background: none;
       border: none;
       cursor: pointer;
-      padding: 8px;
+      width: 44px;
+      height: 44px;
       border-radius: var(--radius);
-      min-width: 44px;
-      min-height: 44px;
       align-items: center;
       justify-content: center;
       flex-direction: column;
@@ -155,8 +159,11 @@
     .mobile-menu {
       display: none;
       position: fixed;
-      top: 60px;
+      top: var(--nav-h);
       left: 0; right: 0;
+      max-height: calc(100vh - var(--nav-h));
+      max-height: calc(100dvh - var(--nav-h));
+      overflow-y: auto;
       background: var(--warm-white);
       border-bottom: 1px solid var(--rule);
       padding: 1rem 1.25rem 1.5rem;
@@ -167,13 +174,15 @@
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
+      display: flex;
+      align-items: center;
       text-decoration: none;
       color: var(--charcoal);
       font-weight: 500;
       font-size: 16px;
       padding: 13px 0;
       border-bottom: 1px solid var(--rule);
-      min-height: 44px;
+      min-height: 48px;
     }
     .mobile-menu a:last-child { border-bottom: none; }
     .mobile-menu .mobile-book-cta {
@@ -190,14 +199,14 @@
 
     /* ─── HERO ─── */
     .hero {
-      min-height: 100svh;
       min-height: 100vh;
+      min-height: 100svh; /* after 100vh so phones use the visible viewport */
       position: relative;
       display: flex;
       align-items: center;
       overflow: hidden;
       background: var(--forest);
-      padding-top: 60px;
+      padding-top: var(--nav-h);
     }
     .hero-bg {
       position: absolute; inset: 0;
@@ -270,6 +279,24 @@
     }
     .btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
 
+    /* Scroll cue — line only (word removed) */
+    .hero-scroll {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .hero-scroll-line {
+      width: 1px;
+      height: 28px;
+      background: rgba(255,255,255,0.25);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+
     /* ─── STRIP ─── */
     .strip {
       background: var(--forest);
@@ -287,7 +314,7 @@
       font-weight: 500;
     }
     .strip-item svg { width: 15px; height: 15px; stroke: rgba(255,255,255,0.6); fill: none; stroke-width: 2; flex-shrink: 0; }
-    .strip-item a { color: inherit; text-decoration: none; }
+    .strip-item a { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; }
 
     /* ─── SECTIONS ─── */
     .section { padding: 3.5rem 1.25rem; }
@@ -317,11 +344,7 @@
 
     /* ─── ABOUT ─── */
     .about { background: var(--cream); }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
+    .about-grid { display: grid; grid-template-columns: 1fr; gap: 2rem; }
     .about-img {
       position: relative;
       border-radius: var(--radius-lg);
@@ -342,11 +365,13 @@
       line-height: 1.4;
     }
     .about-img-accent strong { display: block; font-size: 18px; font-weight: 600; font-family: 'Lora', serif; }
-    .about-body p { color: var(--mid); margin-bottom: 1rem; font-size: 0.98rem; }
-    .about-body p:last-of-type { margin-bottom: 1.5rem; }
-    .about-body .btn-primary { width: 100%; justify-content: center; }
+    /* Scoped to .about-text so it no longer overrides .section-label */
+    .about-text { color: var(--mid); margin-bottom: 1rem; font-size: 0.98rem; }
+    .about-text:last-of-type { margin-bottom: 1.5rem; }
+    .about-body .btn-primary { width: 100%; justify-content: center; background: var(--forest); color: #fff; }
 
     /* ─── GALLERY ─── */
+    .gallery-block { margin-top: 3rem; }
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -360,18 +385,10 @@
       background: var(--mist);
     }
     .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .gallery-item:first-child {
-      grid-column: 1 / -1;
-      aspect-ratio: 16/7;
-    }
+    .gallery-item:first-child { grid-column: 1 / -1; aspect-ratio: 16/7; }
 
     /* ─── SERVICES ─── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
+    .services-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
     .service-card {
       background: var(--cream);
       border-radius: var(--radius-lg);
@@ -394,7 +411,7 @@
       flex-shrink: 0;
     }
     .service-icon svg { width: 20px; height: 20px; stroke: var(--forest); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .service-body { flex: 1; }
+    .service-body { flex: 1; min-width: 0; }
     .service-card h3 {
       font-family: 'Lora', serif;
       font-size: 1rem;
@@ -417,11 +434,7 @@
 
     /* ─── PRICING ─── */
     .pricing { background: var(--cream); }
-    .pricing-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+    .pricing-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
     .pricing-card {
       background: var(--warm-white);
       border-radius: var(--radius-lg);
@@ -464,6 +477,8 @@
       gap: 6px;
     }
     .pricing-who::before { content:''; display:inline-block; width:12px; height:1px; background:var(--sage); }
+    .pricing-note { margin-top: 1.25rem; font-size: 0.85rem; color: var(--light); text-align: center; }
+    .pricing-note a { display: inline-flex; align-items: center; color: var(--sage); }
 
     /* ─── DOCTORS ─── */
     .doctors { background: var(--cream); }
@@ -473,25 +488,10 @@
       overflow: hidden;
       border: 1px solid var(--rule);
     }
-    .doctors-photo-wrap {
-      aspect-ratio: 16/7;
-      overflow: hidden;
-    }
-    .doctors-photo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      display: block;
-    }
-    .doctors-bios {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-    .doctor-bio {
-      padding: 1.5rem;
-      border-top: 1px solid var(--rule);
-    }
+    .doctors-photo-wrap { aspect-ratio: 16/7; overflow: hidden; }
+    .doctors-photo-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .doctors-bios { display: grid; grid-template-columns: 1fr; }
+    .doctor-bio { padding: 1.5rem; border-top: 1px solid var(--rule); }
     .doctor-bio h3 {
       font-family: 'Lora', serif;
       font-size: 1.2rem;
@@ -507,12 +507,9 @@
       text-transform: uppercase;
       margin-bottom: 0.6rem;
     }
-    .doctor-bio p { font-size: 0.9rem; color: var(--mid); line-height: 1.65; margin-bottom: 0.75rem; }
-    .doctor-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
+    /* Scoped to .doctor-text so it no longer overrides .doctor-credentials */
+    .doctor-text { font-size: 0.9rem; color: var(--mid); line-height: 1.65; margin-bottom: 0.75rem; }
+    .doctor-tags { display: flex; flex-wrap: wrap; gap: 5px; }
     .doctor-tag {
       font-size: 11px;
       font-weight: 600;
@@ -524,10 +521,7 @@
     }
 
     /* ─── SUPPLEMENTS ─── */
-    .supplements {
-      background: var(--forest);
-      padding: 3.5rem 1.25rem;
-    }
+    .supplements { background: var(--forest); padding: 3.5rem 1.25rem; }
     .supplements-inner { max-width: 1080px; margin: 0 auto; }
     .supplements-label {
       font-size: 11px;
@@ -545,12 +539,8 @@
       margin-bottom: 0.6rem;
       line-height: 1.3;
     }
-    .supplements p {
-      color: rgba(255,255,255,0.72);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
+    /* Scoped to .supplements-text so it no longer overrides the two labels */
+    .supplements-text { color: rgba(255,255,255,0.72); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.7; }
     .btn-supp {
       display: inline-flex;
       align-items: center;
@@ -566,6 +556,7 @@
       width: 100%;
       min-height: 48px;
       margin-bottom: 2rem;
+      text-align: center;
     }
     .btn-supp:hover { background: var(--mist); }
     .supplements-pills-label {
@@ -576,11 +567,7 @@
       color: rgba(255,255,255,0.45);
       margin-bottom: 0.6rem;
     }
-    .supplements-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+    .supplements-pills { display: flex; flex-wrap: wrap; gap: 8px; }
     .supp-pill {
       background: rgba(255,255,255,0.1);
       color: rgba(255,255,255,0.85);
@@ -592,11 +579,7 @@
     }
 
     /* ─── TESTIMONIALS ─── */
-    .testimonials-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
     .testimonial {
       background: var(--cream);
       border-radius: var(--radius-lg);
@@ -615,11 +598,7 @@
     .stars { color: #c4853a; font-size: 13px; margin-bottom: 0.5rem; letter-spacing: 2px; }
 
     /* ─── BOOKING CTA ─── */
-    .booking-cta {
-      background: var(--charcoal);
-      padding: 3.5rem 1.25rem;
-      text-align: center;
-    }
+    .booking-cta { background: var(--charcoal); padding: 3.5rem 1.25rem; text-align: center; }
     .booking-cta h2 {
       font-family: 'Lora', serif;
       font-size: clamp(1.7rem, 6vw, 2.8rem);
@@ -649,12 +628,7 @@
 
     /* ─── CONTACT ─── */
     .contact { background: var(--cream); }
-    .contact-item {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      align-items: flex-start;
-    }
+    .contact-item { display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: flex-start; }
     .contact-icon {
       width: 40px;
       height: 40px;
@@ -666,16 +640,20 @@
       flex-shrink: 0;
     }
     .contact-icon svg { width: 18px; height: 18px; stroke: var(--forest); fill: none; stroke-width: 2; stroke-linecap: round; }
+    .contact-item-text { min-width: 0; }
     .contact-item-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light); margin-bottom: 2px; }
     .contact-item-text a {
+      display: inline-flex;
+      align-items: center;
       color: var(--forest);
       text-decoration: none;
       font-weight: 500;
       font-size: 0.95rem;
-      min-height: unset;
+      overflow-wrap: anywhere; /* long email can't push the page wider */
     }
     .contact-item-text a:hover { text-decoration: underline; }
     .contact-item-text p { color: var(--mid); font-size: 0.88rem; margin: 0; line-height: 1.5; }
+    .contact-item-text p.contact-sub { margin-top: 4px; font-size: 0.83rem; color: var(--light); }
     .map-wrap {
       background: var(--mist);
       border-radius: var(--radius-lg);
@@ -685,8 +663,9 @@
       margin-top: 0.5rem;
     }
     .map-wrap iframe { width: 100%; height: 100%; border: none; display: block; }
+    .map-note { margin-top: 0.6rem; font-size: 0.83rem; color: var(--light); text-align: center; }
+    .map-directions { display: none; } /* mobile only — see below */
 
-    /* Call button — big tap target for mobile */
     .call-btn {
       display: flex;
       align-items: center;
@@ -702,13 +681,13 @@
       margin-bottom: 1.5rem;
       min-height: 52px;
     }
-    .call-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; }
+    .call-btn svg { width: 18px; height: 18px; stroke: #fff; fill: none; stroke-width: 2; flex-shrink: 0; }
 
     /* ─── FOOTER ─── */
     footer {
       background: #1c2e20;
       color: rgba(255,255,255,0.55);
-      padding: 2.5rem 1.25rem;
+      padding: 2.5rem 1.25rem calc(2.5rem + env(safe-area-inset-bottom, 0px));
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -716,40 +695,72 @@
       text-align: center;
       font-size: 13px;
     }
-    footer a { color: rgba(255,255,255,0.7); text-decoration: none; min-height: unset; }
+    footer a { display: inline-flex; align-items: center; color: rgba(255,255,255,0.7); text-decoration: none; }
     footer a:hover { color: #fff; }
     .footer-links { display: flex; gap: 1.25rem; flex-wrap: wrap; justify-content: center; margin-top: 0.25rem; }
     .footer-logo { height: 32px; object-fit: contain; opacity: 0.7; }
     .footer-name { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; color: rgba(255,255,255,0.8); }
-
-    /* ── SCROLL INDICATOR ── */
-    .hero-scroll {
-      position: absolute;
-      bottom: 1.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
-      color: rgba(255,255,255,0.45);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .hero-scroll-line {
-      width: 1px;
-      height: 28px;
-      background: rgba(255,255,255,0.25);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse { 0%,100%{opacity:0.3} 50%{opacity:0.8} }
+    .footer-copy { margin-top: 0.5rem; font-size: 11px; }
 
     /* ──────────────────────────────────────
-       RESPONSIVE BREAKPOINTS
+       MOBILE-ONLY ADJUSTMENTS (below 900px)
+       Nothing in these blocks applies on desktop.
+       Placed BEFORE the min-width queries so those still win
+       at their own breakpoints, exactly like the original.
+    ────────────────────────────────────── */
+    @media (max-width: 899px) {
+      .nav { gap: 0.5rem; padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1rem, env(safe-area-inset-right)); }
+      .nav-logo { min-width: 0; }
+      .nav-logo-text, .nav-logo-sub { white-space: nowrap; }
+      .nav-right { gap: 0.25rem; flex-shrink: 0; }
+
+      .hero-content { padding-bottom: 5rem; }
+      .about-img-accent { bottom: 0.75rem; right: 0.75rem; padding: 0.5rem 0.8rem; }
+
+      .strip-item a { padding: 0; }
+      .pricing-note a { padding: 8px 2px; }
+      .contact-item-text a { padding: 4px 0; }
+      footer a { padding: 6px 2px; }
+      .footer-links { gap: 0.25rem 1.25rem; }
+
+      .map-directions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 0.75rem;
+        min-height: 48px;
+        border: 1.5px solid var(--forest);
+        color: var(--forest);
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+      }
+    }
+
+    @media (max-width: 639px) {
+      .gallery-item:first-child { aspect-ratio: 16/9; }
+      .doctors-photo-wrap { aspect-ratio: 4/3; }
+    }
+
+    @media (max-width: 479px) {
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; }
+    }
+
+    @media (max-width: 359px) {
+      .nav { padding-left: 0.75rem; padding-right: 0.5rem; }
+      .nav-logo { gap: 7px; }
+      .nav-logo-img, .nav-logo-mark { width: 30px; height: 30px; }
+      .nav-logo-text { font-size: 13px; }
+      .nav-logo-sub { font-size: 9px; }
+      .nav-book-mobile { padding: 0 10px; font-size: 12px; }
+    }
+
+    /* ──────────────────────────────────────
+       RESPONSIVE BREAKPOINTS (same as original)
     ────────────────────────────────────── */
 
-    /* ── ≥ 480px: slight breathing room ── */
     @media (min-width: 480px) {
       .strip { flex-direction: row; flex-wrap: wrap; gap: 0.75rem 2rem; justify-content: center; padding: 0.875rem 1.5rem; }
       .hero-ctas { gap: 0.875rem; }
@@ -757,11 +768,9 @@
       .btn-cta { width: auto; }
     }
 
-    /* ── ≥ 640px: two-column grids ── */
     @media (min-width: 640px) {
-      .nav { padding: 0 1.75rem; height: 64px; }
-      .mobile-menu { top: 64px; }
-      .hero { padding-top: 64px; }
+      :root { --nav-h: 64px; }
+      .nav { padding: 0 1.75rem; }
       .section { padding: 4rem 1.75rem; }
       .supplements { padding: 4rem 1.75rem; }
 
@@ -778,9 +787,7 @@
       .call-btn { width: auto; display: inline-flex; }
     }
 
-    /* ── ≥ 900px: full desktop layout ── */
     @media (min-width: 900px) {
-      /* Show desktop nav, hide mobile controls */
       .nav-links { display: flex; }
       .nav-book-mobile { display: none !important; }
       .nav-hamburger { display: none !important; }
@@ -814,7 +821,6 @@
       .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
     }
 
-    /* ── ≥ 1080px: wide desktop ── */
     @media (min-width: 1080px) {
       .hero-content { margin-left: 6vw; }
     }
@@ -828,20 +834,20 @@
 <body>
 
   <!-- NAV -->
-  <nav class="nav" id="mainNav">
-    <a href="#" class="nav-logo">
-      <img src="images/logo.png" alt="Mahony-Rathburn Chiropractic logo" class="nav-logo-img"
+  <nav class="nav" id="mainNav" aria-label="Main">
+    <a href="#top" class="nav-logo">
+      <img src="images/logo.png" alt="" class="nav-logo-img"
         onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-      <div class="nav-logo-mark" style="display:none;">
+      <div class="nav-logo-mark">
         <svg viewBox="0 0 24 24"><path d="M12 3v18M8 7c0 0 2-2 4-2s4 2 4 2M8 17c0 0 2 2 4 2s4-2 4-2"/></svg>
       </div>
-      <div>
+      <div class="nav-logo-words">
         <div class="nav-logo-text">Mahony-Rathburn</div>
         <div class="nav-logo-sub">Chiropractic</div>
       </div>
     </a>
 
-    <!-- Desktop links -->
+    <!-- Desktop links (900px+) -->
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#services">Services</a>
@@ -852,10 +858,10 @@
       <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book">Book Now</a>
     </div>
 
-    <!-- Mobile right side -->
+    <!-- Mobile / tablet controls (below 900px) -->
     <div class="nav-right">
-      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book-mobile" style="display:inline-flex;">Book Now</a>
-      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" style="display:flex;">
+      <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="nav-book-mobile">Book Now</a>
+      <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -863,13 +869,13 @@
 
   <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" onclick="closeMobile()">About</a>
-    <a href="#services" onclick="closeMobile()">Services</a>
-    <a href="#pricing" onclick="closeMobile()">Pricing</a>
-    <a href="#doctors" onclick="closeMobile()">Our Doctors</a>
-    <a href="#supplements" onclick="closeMobile()">Supplements</a>
-    <a href="#contact" onclick="closeMobile()">Contact</a>
-    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="mobile-book-cta" onclick="closeMobile()">Book an Appointment →</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#doctors">Our Doctors</a>
+    <a href="#supplements">Supplements</a>
+    <a href="#contact">Contact</a>
+    <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="mobile-book-cta">Book an Appointment →</a>
   </div>
 
   <!-- HERO -->
@@ -881,12 +887,11 @@
       <p class="hero-desc">Dr. Orion Mahony brings 21 years of experience to every visit — treating the whole person, not just the pain.</p>
       <div class="hero-ctas">
         <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary">Book an Appointment</a>
-        <a href="#about" class="btn-ghost">Meet the Doctors</a>
+        <a href="#doctors" class="btn-ghost">Meet the Doctors</a>
       </div>
     </div>
-    <div class="hero-scroll">
+    <div class="hero-scroll" aria-hidden="true">
       <div class="hero-scroll-line"></div>
-      scroll
     </div>
   </section>
 
@@ -923,25 +928,25 @@
         <div class="about-body">
           <p class="section-label">Our Practice</p>
           <h2 class="section-title">Personalized chiropractic care</h2>
-          <p>Mahony-Rathburn Chiropractic is a hands-on, full spinal chiropractic practice located in Fort Wayne's north side — near Cedar Creek Church, Metea State Park, and just 8 minutes from I-69 and Parkview Regional Medical Center.</p>
-          <p>Dr. Orion Mahony and Dr. Kami Rathburn met at Palmer College of Chiropractic, built a thriving practice together on Orcas Island, Washington, and eventually made the journey to Indiana to serve a new community.</p>
-          <p>We don't rush you in and out. Every patient gets real attention, honest answers, and care that fits their life.</p>
-          <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary" style="background:var(--forest);color:#fff;">Schedule a Visit</a>
+          <p class="about-text">Mahony-Rathburn Chiropractic is a hands-on, full spinal chiropractic practice located in Fort Wayne's north side — near Cedar Creek Church, Metea State Park, and just 8 minutes from I-69 and Parkview Regional Medical Center.</p>
+          <p class="about-text">Dr. Orion Mahony and Dr. Kami Rathburn met at Palmer College of Chiropractic, built a thriving practice together on Orcas Island, Washington, and eventually made the journey to Indiana to serve a new community.</p>
+          <p class="about-text">We don't rush you in and out. Every patient gets real attention, honest answers, and care that fits their life.</p>
+          <a href="https://mrchiro.janeapp.com/" target="_blank" rel="noopener" class="btn-primary">Schedule a Visit</a>
         </div>
       </div>
 
       <!-- GALLERY -->
-      <div style="margin-top:3rem;">
+      <div class="gallery-block">
         <p class="section-label">Inside Our Office</p>
         <div class="gallery-grid">
           <div class="gallery-item">
-            <img src="images/sign-outside.jpg" alt="Mahony-Rathburn Chiropractic front sign" />
+            <img src="images/sign-outside.jpg" alt="Mahony-Rathburn Chiropractic front sign" loading="lazy" />
           </div>
           <div class="gallery-item">
-            <img src="images/adjustment-1.jpg" alt="Chiropractic adjustment in progress" />
+            <img src="images/adjustment-1.jpg" alt="Chiropractic adjustment in progress" loading="lazy" />
           </div>
           <div class="gallery-item">
-            <img src="images/graston.jpg" alt="Graston technique tools and therapy" />
+            <img src="images/graston.jpg" alt="Graston technique tools and therapy" loading="lazy" />
           </div>
         </div>
       </div>
@@ -1079,8 +1084,8 @@
         </div>
 
       </div>
-      <p style="margin-top:1.25rem;font-size:0.85rem;color:var(--light);text-align:center;">
-        Questions about payment or insurance? Call or text <a href="tel:2603191126" style="color:var(--sage);min-height:unset;">(260) 319-1126</a>
+      <p class="pricing-note">
+        Questions about payment or insurance? Call or text <a href="tel:2603191126">(260) 319-1126</a>
       </p>
     </div>
   </section>
@@ -1094,13 +1099,13 @@
 
       <div class="doctors-card">
         <div class="doctors-photo-wrap">
-          <img src="images/oleftkright.png" alt="Dr. Orion Mahony and Dr. Kami Rathburn" />
+          <img src="images/oleftkright.png" alt="Dr. Orion Mahony and Dr. Kami Rathburn" loading="lazy" />
         </div>
         <div class="doctors-bios">
           <div class="doctor-bio">
             <h3>Dr. Orion Mahony</h3>
             <p class="doctor-credentials">D.C. · 21 Years Experience</p>
-            <p>Dr. Mahony treats musculoskeletal issues, acute injuries, TMJ, knees, back and neck pain, and is especially skilled with teens and sports-related conditions. He also practices maintenance and wellness chiropractic, and upper-cervical specific care. He trained at Palmer College of Chiropractic and spent 15+ years building a practice on Orcas Island before returning to Indiana.</p>
+            <p class="doctor-text">Dr. Mahony treats musculoskeletal issues, acute injuries, TMJ, knees, back and neck pain, and is especially skilled with teens and sports-related conditions. He also practices maintenance and wellness chiropractic, and upper-cervical specific care. He trained at Palmer College of Chiropractic and spent 15+ years building a practice on Orcas Island before returning to Indiana.</p>
             <div class="doctor-tags">
               <span class="doctor-tag">Back &amp; Neck</span>
               <span class="doctor-tag">TMJ</span>
@@ -1114,7 +1119,7 @@
           <div class="doctor-bio">
             <h3>Dr. Kami Rathburn</h3>
             <p class="doctor-credentials">B.S., D.C. · Palmer College of Chiropractic</p>
-            <p>Born and raised in Indiana, Dr. Rathburn earned her B.S. in Biology from Bowling Green State University and graduated from Palmer College of Chiropractic in 2000. A former collegiate cross country runner, she brings an athlete's understanding to patient care — and is the practice's certified Graston practitioner. Currently pursuing advanced graduate studies.</p>
+            <p class="doctor-text">Born and raised in Indiana, Dr. Rathburn earned her B.S. in Biology from Bowling Green State University and graduated from Palmer College of Chiropractic in 2000. A former collegiate cross country runner, she brings an athlete's understanding to patient care — and is the practice's certified Graston practitioner. Currently pursuing advanced graduate studies.</p>
             <div class="doctor-tags">
               <span class="doctor-tag">Back &amp; Neck</span>
               <span class="doctor-tag">TMJ</span>
@@ -1136,7 +1141,7 @@
       <div>
         <p class="supplements-label">Nutritional Support</p>
         <h2>Metagenics supplements, available through our practice</h2>
-        <p>We carry and recommend Metagenics — a professional-grade, science-backed line of supplements available exclusively through licensed healthcare providers. Order online through our practice store and have them shipped directly to your door.</p>
+        <p class="supplements-text">We carry and recommend Metagenics — a professional-grade, science-backed line of supplements available exclusively through licensed healthcare providers. Order online through our practice store and have them shipped directly to your door.</p>
         <a href="https://krathburn.metagenics.com" target="_blank" rel="noopener" class="btn-supp">Visit Our Supplement Store →</a>
       </div>
       <div>
@@ -1166,37 +1171,37 @@
       <div class="testimonials-grid">
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"Best chiropractor I've been to! Doesn't snap, crackle, pop everything and send you on your way. They figure out what's best for you and adjust as needed."</p>
           <span class="testimonial-author">— Google Review</span>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"Dr. Orion listens to me and is very compassionate. Very good chiropractor."</p>
           <span class="testimonial-author">— Google Review</span>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"They have always been very nice and helpful with my adjustments. Been going ever since my accident, and they've really put me back on track. Love this place and the good job they always do!"</p>
           <span class="testimonial-author">— Google Review</span>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"Highly skilled and see the complete picture while addressing specific concerns. Kind. Runs on time."</p>
           <span class="testimonial-author">— Google Review</span>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"Kami is amazing — she doesn't just crack your back, she goes through each vertebra and asks questions. It's not like a normal chiropractor where they just pop you and move on."</p>
           <span class="testimonial-author">— Facebook Review</span>
         </div>
 
         <div class="testimonial">
-          <div class="stars">★★★★★</div>
+          <div class="stars" aria-label="5 stars">★★★★★</div>
           <p class="testimonial-text">"100% recommend. The care here is personal, thorough, and genuinely effective. I leave every appointment feeling better than when I walked in."</p>
           <span class="testimonial-author">— Facebook Review</span>
         </div>
@@ -1218,7 +1223,6 @@
       <p class="section-label">Find Us</p>
       <h2 class="section-title">Location &amp; Contact</h2>
 
-      <!-- Mobile: big call button up top -->
       <a href="tel:2603191126" class="call-btn">
         <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Call or Text (260) 319-1126
@@ -1233,7 +1237,7 @@
             <div class="contact-item-text">
               <div class="contact-item-label">Address</div>
               <p>8422 Union Chapel Rd<br>Fort Wayne, IN 46845</p>
-              <p style="margin-top:4px;font-size:0.83rem;color:var(--light);">Near Cedar Creek Church &amp; Metea State Park<br>8 min from I-69 &amp; Parkview Regional</p>
+              <p class="contact-sub">Near Cedar Creek Church &amp; Metea State Park<br>8 min from I-69 &amp; Parkview Regional</p>
             </div>
           </div>
           <div class="contact-item">
@@ -1280,13 +1284,14 @@
           <div class="map-wrap">
             <iframe
               title="Mahony-Rathburn Chiropractic location map"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2986.7!2d-85.0748!3d41.1742!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8815e4b3e3a3b3b3%3A0x0!2s8422+Union+Chapel+Rd%2C+Fort+Wayne%2C+IN+46845!5e0!3m2!1sen!2sus!4v1"
+              src="https://www.google.com/maps?q=8422+Union+Chapel+Rd,+Fort+Wayne,+IN+46845&output=embed"
               allowfullscreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade">
             </iframe>
           </div>
-          <p style="margin-top:0.6rem;font-size:0.83rem;color:var(--light);text-align:center;">You will pass the driveway before the park entrance — look for us on the right.</p>
+          <a class="map-directions" href="https://www.google.com/maps/dir/?api=1&destination=8422+Union+Chapel+Rd,+Fort+Wayne,+IN+46845" target="_blank" rel="noopener">Get Directions</a>
+          <p class="map-note">You will pass the driveway before the park entrance — look for us on the right.</p>
         </div>
       </div>
     </div>
@@ -1304,51 +1309,50 @@
       <a href="mailto:mahonyrathburnchiro@gmail.com">Email Us</a>
       <a href="https://krathburn.metagenics.com" target="_blank" rel="noopener">Metagenics Store</a>
     </div>
-    <div style="margin-top:0.5rem;font-size:11px;">© 2026 Mahony-Rathburn Chiropractic, LLC. All rights reserved.</div>
+    <div class="footer-copy">© 2026 Mahony-Rathburn Chiropractic, LLC. All rights reserved.</div>
   </footer>
 
   <script>
-    // Nav scroll shadow
     const nav = document.getElementById('mainNav');
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    // Nav shadow on scroll
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, { passive: true });
 
-    // Hamburger toggle
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('active', isOpen);
-      hamburger.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-    });
-
-    function closeMobile() {
-      mobileMenu.classList.remove('open');
-      hamburger.classList.remove('active');
-      hamburger.setAttribute('aria-label', 'Open menu');
+    // Mobile menu
+    function setMenu(open) {
+      mobileMenu.classList.toggle('open', open);
+      hamburger.classList.toggle('active', open);
+      hamburger.setAttribute('aria-expanded', String(open));
+      hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     }
+    function closeMobile() { setMenu(false); }
 
-    // Close mobile menu on outside tap
+    hamburger.addEventListener('click', () => setMenu(!mobileMenu.classList.contains('open')));
+
+    // Close on outside tap, Escape, or when resizing up to desktop
     document.addEventListener('click', (e) => {
       if (mobileMenu.classList.contains('open') &&
           !mobileMenu.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        closeMobile();
-      }
+          !hamburger.contains(e.target)) closeMobile();
     });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobile(); });
+    window.addEventListener('resize', () => { if (window.innerWidth >= 900) closeMobile(); });
 
-    // Smooth scroll with offset for fixed nav
+    // Smooth scroll with offset for fixed nav; also closes the mobile menu
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const href = a.getAttribute('href');
+        closeMobile();
         if (href === '#') return;
         const target = document.querySelector(href);
         if (target) {
           e.preventDefault();
-          const navH = nav.offsetHeight;
-          const top = target.getBoundingClientRect().top + window.scrollY - navH - 8;
-          window.scrollTo({ top, behavior: 'smooth' });
+          const top = target.getBoundingClientRect().top + window.scrollY - nav.offsetHeight - 8;
+          window.scrollTo({ top: href === '#top' ? 0 : top, behavior: 'smooth' });
         }
       });
     });
